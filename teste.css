@@ -50,7 +50,7 @@ body {
 section,
 aside {
     background: image(filme);
-    border: solid 1px;
+    /* border: solid 1px; */
     border-bottom-color: grey;
     
 }
