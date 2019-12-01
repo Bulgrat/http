@@ -69,7 +69,7 @@ margin: 0%;
 }
 
 main{
-    background-color: antiquewhite;
+    background-color: lightgrey;
     margin-bottom: 50px;
 }
 section>a{
@@ -84,3 +84,4 @@ section>a{
 a{
     text-decoration: none;
 }
+  
