@@ -33,8 +33,7 @@
                 iniciadas pelo destinatário, geralmente um navegador da Web. Um documento completo é reconstruído a
                 partir dos diferentes sub-documentos obtidos, como por exemplo texto, descrição do layout, imagens,
                 vídeos, scripts e muito mais.</p>
-        </section>
-        <section>
+
             <p>Clientes e servidores se comunicam trocando mensagens individuais (em opsição a um fluxo de dados). As
                 mensagens envidas pelo cliente, geralmente um navegador da web, são chamadas de solicitções(requests),
                 ou também requisições, e as mensagens envidas pelo servidor como resposta são chamadas de
@@ -47,6 +46,44 @@
                 ser usado para buscas partes de documentos para atualizar páginas da Web sob demanda.
             </p>
         </section>
+        <section>
+            <h2>Componentes de sistemas baseados em HTTP</h2>
+            <p>
+                O HTTP é um protocolo cliente-servidor: as requisições são enviados por uma entidade, o agente-usuário
+                (ou um proxy em nome dele). A maior parte do tempo, o agente-usuário é um navegador da Web, mas pode ser
+                qualquer coisa, como por exemplo um robô que rastreia a Web para preencher e manter um índice de
+                mecanismo de pesquisa.
+            </p>
+            <p>Cada requisição individual é enviada para um servidor, que irá lidar com isso e fornecer um resultado,
+                chamado de resposta. Entre a solicitação e a resposta existem várias entidades, designadas coletivamente
+                como proxies, que executam operações diferentes e atuam como gateways (intermediários) ou caches, por
+                exemplo.</p>
+            <p>Na realidade, existem muitos outros computadores entre o navegador e o servidor que está tratando a
+                requisição: existem roteadores, modems e muito mais. Graças ao modelo de camadas da Web (layers), essas
+                funcionalidades estão escondidas nas camadas de rede e transporte, respectivamente. O HTTP está no topo
+                da camada de aplicação. Apesar de ser importante diagnosticar problemas de conectividade, os layers
+                abaixo da camada de aplicação são irrelevantes para a descrição do HTTP.</p>
+        </section>
+        <section>
+            <h3>Cliente: o agente-usuário</h3>
+            <p>O user-agent é qualquer ferramenta que age em nome do usuário. Essa função é predominantemente realizada
+                pelo navegador Web; algumas poucas exceções são programas usados por engenheiros e desenvolvedores Web
+                para depurar as suas aplicações.</p>
+            <p>O navegador é sempre a entidade que inicia as requisições. Nunca é o servidor (embora alguns mecanismos
+                tenham sido adicionados ao longo dos anos para simular mensagens iniciadas pelo servidor).</p>
+            <p>Para mostrar uma página Web, o navegador envia uma requisição para buscar o documento HTML da página. Ele
+                então realiza uma análise sintática desse arquivo, buscando requisições adicionais correspondentes a
+                scripts de execução, informações de layout (CSS) para apresentação e subrecursos contidos na página
+                (geralmente imagens e vídeos). Depois o navegador interpreta esses recursos para mostrar ao usuário o
+                documento completo, a página Web. Scripts executados pelo navegador podem buscar mais recursos em fases
+                subsequentes e o navegador atualiza a página Web de acordo.</p>
+            <p>Uma página Web é um documento de hipertexto. Isso significa que algumas partes do texto mostrado são
+                links (vínculos com outras páginas ou recursos da Web), os quais podem ser ativados (normalmente pelo
+                clique do mouse) para buscar uma nova página, permitindo ao usuário redirecionar seu agente-usuário e
+                navegar pela internet. O navegador traduz esses endereços em requisições HTTP e depois interpreta as
+                respostas HTTP para mostrar ao usuário uma resposta transparente.</p>
+        </section>
+
     </main>
 </body>
 
