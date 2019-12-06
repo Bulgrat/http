@@ -18,17 +18,17 @@
         <nav class="barra">
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#2">Componentes</a></li>
-                <li><a href="#3">Aspectos</a></li>
-                <li><a href="#4">Controlador</a></li>
-                <li><a href="#5">Fluxo</a></li>
+                <li><a href="#s2">Componentes</a></li>
+                <li><a href="#s3">Aspectos</a></li>
+                <li><a href="#s4">Controlador</a></li>
+                <li><a href="#s5">Fluxo</a></li>
 
             </ul>
         </nav>
     </header>
-    <main class="container">
-        <section id="inicio">
-            <H1 >O que é HTTP</H1>
+    <main class="container" id="inicio">
+        <section>
+            <H1>O que é HTTP</H1>
             <p>HTTP é um protocolo (protocol) que permite a obtenção de recursos, tais como documentos HTML. É a base de
                 qualquer troca de dados na Web e um protocolo cliente-servidor, o que significa que as requisições são
                 iniciadas pelo destinatário, geralmente um navegador da Web. Um documento completo é reconstruído a
@@ -47,7 +47,7 @@
                 ser usado para buscas partes de documentos para atualizar páginas da Web sob demanda.
             </p>
         </section>
-        <section id="2">
+        <section id="s2">
             <h2>Componentes de sistemas baseados em HTTP</h2>
             <p>
                 O HTTP é um protocolo cliente-servidor: as requisições são enviados por uma entidade, o agente-usuário
@@ -112,7 +112,7 @@
                 <li>registro de informação (permite o armazenamento de informações de histórico)</li>
             </ul>
         </section>
-        <section id="3">
+        <section id="s3">
             <h2>Aspectos básicos do HTTP</h2>
             <h3>HTTP é simples</h3>
             <p>Mesmo com mais complexidade introduzida no HTTP/2.0 por encapsular mensagens HTTP em quadros (frames), o
@@ -150,13 +150,13 @@
                 exemplo, a Google está fazendo testes com o QUIC que é construído sobre o UDP para prover um protocolo
                 de transporte mais confiável e eficiente.</p>
         </section>
-        <section id="4">
+        <section class="s4" id="s4">
             <h2>O que pode ser controlado pelo HTTP?</h2>
             <p>A natureza extensível do HTTP tem permitido mais controle e funcionalidade para a internet, ao longo do
                 tempo. Cache e autenticação são funcionalidades suportadas desde o início da história do HTTP. A
                 habilidade de relaxar as restrições na origem, em contraste, foi adicionada nos anos 2010s.</p>
             <p>Aqui está uma lista de funcionalidades comuns, controláveis com HTTP:</p>
-            <ol id="ul2" type="1">
+            <ol class="ol2" type="1">
                 <li>Cache
                     A forma como documentos são cacheados pode ser controlada pelo HTTP. O servidor pode instruir
                     proxies, e clientes, ao que cachear e por quanto tempo. O cliente pode instruir proxies de cache
@@ -184,7 +184,7 @@
                     nível de usuário.</li>
             </ol>
         </section>
-        <section id="5">
+        <section id="s5">
             <h2>Fluxo HTTP</h2>
             <ul>
                 <li>Quando o cliente quer comunicar com um servidor, este sendo um servidor final ou um proxy, ele
@@ -200,12 +200,13 @@
                 <li>
                     Fecha ou reutiliza a conexão para requisições futuras.
                 </li>
-                <p>Se a linha de montagem (pipelining) estiver ativada, várias requisições podem ser enviadas sem que a
-                    primeira resposta seja totalmente recebida. A linha de montagem HTTP se provou difícil de ser
-                    implementada nas redes existentes, onde peças antigas de software coexistem com versões modernas. A
-                    linha de montagem HTTP tem sido substituída no HTTP/2.0 com multiplexação mais robusta de
-                    requisições dentro de um quadro (frame).</p>
+
             </ul>
+            <p>Se a linha de montagem (pipelining) estiver ativada, várias requisições podem ser enviadas sem que a
+                primeira resposta seja totalmente recebida. A linha de montagem HTTP se provou difícil de ser
+                implementada nas redes existentes, onde peças antigas de software coexistem com versões modernas. A
+                linha de montagem HTTP tem sido substituída no HTTP/2.0 com multiplexação mais robusta de
+                requisições dentro de um quadro (frame).</p>
         </section>
     </main>
 </body>

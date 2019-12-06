@@ -42,7 +42,7 @@ body {
 .container {
     display: flex;
     flex-flow: row wrap;
-    margin-top: 30px;
+    margin-top: 60px;
 }
 
 .container>*{
@@ -81,8 +81,10 @@ section>a{
     height: 100%;
     text-decoration: none;
 }
-.sec {
-    flex: 1;
+#s5,
+#s2,
+.s4>li {
+    font-size: 2ch;
 }
 a{
     text-decoration: none;
