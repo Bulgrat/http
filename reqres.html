@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="teste.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    
+
     <title>Document</title>
 </head>
 
@@ -20,38 +20,39 @@
         </nav>
     </header>
     <main>
-    <p></p>
-    <p></p>
-    <button id="lista">Listar</button>
-    <table id="table">
+        <p></p>
+        <p></p>
+        <button id="lista">Listar</button>
+        <table id="table">
 
-    </table>
-    <button id=""></button>
-    <button id=""></button>
-    <button id=""></button>
-    <button id=""></button>
-    <button id=""></button>
-    <button id=""></button>
-</main class="container">
-</body>
-<script>
-    document.getElementById("lista").onclick = function (event) {
-        event.preventDefault();
+        </table>
+        <button id=""></button>
+        <button id=""></button>
+        <button id=""></button>
+        <button id=""></button>
+        <button id=""></button>
+        <button id=""></button>
+    </main class="container">
 
-        var ajax = new XMLHttpRequest();
+    <script>
+        document.getElementById("lista").onclick = function (event) {
+            event.preventDefault();
 
-        ajax.onreadystatechange = function () {
-            if (ajax.readyState == 4 && ajax.status == 200) {
-                let json = JSON.parse(ajax.responseText);
+            var ajax = new XMLHttpRequest();
 
-               
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let json = JSON.parse(ajax.responseText);
+
+
+                }
+
+                ajax.open("GET", "https://reqres.in/api/users?page=2");
+                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                ajax.send();
             }
-
-            ajax.open("GET", "https://reqres.in/api/users?page=2");
-            ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            ajax.send();
         }
-    }
-</script>
+    </script>
+</body>
 
 </html>
