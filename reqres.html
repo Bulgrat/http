@@ -20,8 +20,7 @@
         </nav>
     </header>
     <main>
-        <p></p>
-        <p></p>
+
         <button id="lista">Listar</button>
         <table id="table">
 
@@ -43,7 +42,32 @@
             ajax.onreadystatechange = function () {
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     let json = JSON.parse(ajax.responseText);
+                    var tabela = document.getElementById("table");
 
+                    tabela.innerHTML = null;
+
+                    var tr1 = document.createElement("tr");
+
+                    var td1 = document.createElement("td");
+                    td1.innerHTML = "Nome";
+                    var td2 = document.createElement("td");
+                    td2.innerHTML = "Preço";
+                    tabela.appendChild(tr1);
+                    tr1.appendChild(td1);
+                    tr1.appendChild(td2);
+
+                    for (let id in json) {
+
+                        var tr2 = document.createElement("tr");
+
+                        var td3 = document.createElement("td");
+                        td3.innerHTML = json[id].nome;
+                        var td4 = document.createElement("td");
+                        td4.innerHTML = json[id].preco;
+                        tabela.appendChild(tr2);
+                        tr2.appendChild(td3);
+                        tr2.appendChild(td4);
+                    }
 
                 }
 
