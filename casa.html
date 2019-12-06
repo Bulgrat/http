@@ -19,8 +19,10 @@
         <nav class="barra">
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="top.html">Top 10</a></li>
-                <li><a href="filme.html">Filme</a></li>
+                <li><a href="top.html">Componentes</a></li>
+                <li><a href="filme.html">Aspectos básicos</a></li>
+                <li><a href="filme.html">controlado pelo HTTP</a></li>
+                <li><a href="filme.html">Fluxo HTTP</a></li>
 
             </ul>
         </nav>
@@ -63,8 +65,6 @@
                 funcionalidades estão escondidas nas camadas de rede e transporte, respectivamente. O HTTP está no topo
                 da camada de aplicação. Apesar de ser importante diagnosticar problemas de conectividade, os layers
                 abaixo da camada de aplicação são irrelevantes para a descrição do HTTP.</p>
-        </section>
-        <section>
             <h3>Cliente: o agente-usuário</h3>
             <p>O user-agent é qualquer ferramenta que age em nome do usuário. Essa função é predominantemente realizada
                 pelo navegador Web; algumas poucas exceções são programas usados por engenheiros e desenvolvedores Web
@@ -87,8 +87,6 @@
                 clique do mouse) para buscar uma nova página, permitindo ao usuário redirecionar seu agente-usuário e
                 navegar pela internet. O navegador traduz esses endereços em requisições HTTP e depois interpreta as
                 respostas HTTP para mostrar ao usuário uma resposta transparente.</p>
-        </section>
-        <section>
             <h3>O servidor de páginas Web</h3>
             <p>Do outro lado do canal de comunicação está o servidor que serve o documento requisitado pelo usuário. Um
                 servidor se apresenta virtualmente apenas como uma máquina: isto porque o servidor pode ser uma coleção
@@ -97,8 +95,6 @@
                 servidores de e-commerce, etc.), gerando todo ou parte do documento solicitado.</p>
             <p>Um servidor não é necessáriamente apenas uma máquina, mas vários servidores podem estar hospedados na
                 mesma máquina. Com o HTTP/1.1 e o cabeçalho Host, eles podem até compartilhar o mesmo endereço IP.</p>
-        </section>
-        <section>
             <h3>Proxies (ou representantes)</h3>
             <p>Entre o navegador Web e o servidor, vários computadores e máquinas transmitem as mensagens HTTP. Devido a
                 estrutura em camadas da pilha Web, a maioria dessas máquinas operam em alguma das camadas: de
@@ -135,8 +131,83 @@
                 manter estados, cookies HTTP permitem que as sessões tenham estados. Usando a extensibilidade dos
                 cabeçalhos, os cookies são adicionados ao fluxo do HTTP, permitindo que a criação de sessão em cada
                 requisição HTTP compartilhem o mesmo contexto, ou o mesmo estado.</p>
+            <h3>HTTP e conexões</h3>
+            <p>Uma conexão é controlada na camada de transporte, e portanto fundamentalmente fora do controle do HTTP.
+                Entretanto o HTTP não requer que o protocolo de transporte utilizado seja baseado em conexões, só requer
+                que seja confiável ou não perca mensagens (sem pelo menos apresentar erros). Dentre os dois protocolos
+                de transporte mais comuns na internet, o TCP é confiável e o UDP não. Portanto, o HTTP utiliza o padrão
+                TCP, que é baseado em conexão, mesmo que nem sempre seja obrigatório o uso de uma conexão.</p>
+            <p>No protocolo HTTP/1.0 uma conexão TCP era aberta para cada par de requisição/resposta trocada,
+                introduzindo duas grandes falhas: abrir uma conexão requer várias viagens de ida/volta de mensagens, e
+                portanto é lento, mas se torna mais eficiente quando mensagens são enviadas em maior número ou maior
+                frequência: "conexões quentes" são mais eficientes que "conexões frias" (que envia poucas mensagens ou
+                com baixa frequência).</p>
+            <p>Para contornar essas falhas, o protocolo HTTP/1.1 introduziu o conceito de linhas de produção (ou
+                pipelining) — que se provou difícil de ser implementado — e conexões persistentes: as conexões TCPs
+                feitas embaixo, podem ser parcialmente controladas usando o cabeçalho HTTP Connection. O HTTP/2.0 foi
+                mais além, multiplexando várias mensagens através de uma única conexão, ajudando a manter a conexão mais
+                quente, e mais eficiente.</p>
+            <p>Experimentos estão sendo feitos para projetar um protocolo de transporte mais adequado para o HTTP. Por
+                exemplo, a Google está fazendo testes com o QUIC que é construído sobre o UDP para prover um protocolo
+                de transporte mais confiável e eficiente.</p>
         </section>
-
+        <section>
+            <h2>O que pode ser controlado pelo HTTP?</h2>
+            <p>A natureza extensível do HTTP tem permitido mais controle e funcionalidade para a internet, ao longo do
+                tempo. Cache e autenticação são funcionalidades suportadas desde o início da história do HTTP. A
+                habilidade de relaxar as restrições na origem, em contraste, foi adicionada nos anos 2010s.</p>
+            <p>Aqui está uma lista de funcionalidades comuns, controláveis com HTTP:</p>
+            <ul>
+                <li>Cache
+                    A forma como documentos são cacheados pode ser controlada pelo HTTP. O servidor pode instruir
+                    proxies, e clientes, ao que cachear e por quanto tempo. O cliente pode instruir proxies de cache
+                    intermediários a ignorar o documento armazenado.</li>
+                <li>Relaxamento das restrições na origem
+                    Para prevenir bisbilhoteiros e outros invasores de privacidade, os navegadores reforçam estritamente
+                    a separação dos sites Web. Somente páginas de mesma origem podem acessar todas as informações de uma
+                    página Web. Apesar dessa restrição ser um fardo grande aos servidores, os cabeçalhos HTTP podem
+                    relaxar essa separação estrita no lado dos servidores, permitindo que um documento ser composto por
+                    várias fontes de informação em outros domínios (e pode até ter razões específicas de segurança para
+                    se fazer isso), como um tecido de retalhos.</li>
+                <li>Autenticação
+                    Algumas páginas podem ser protegidas para que apenas usuários específicos possam acessá-la.
+                    Autenticação básica pode ser provida pelo HTTP, usando tanto o cabeçalho WWW-Authenticate e
+                    similares, quanto configurando uma sessão específica usando cookies HTTP.</li>
+                <li>Proxy e tunelamento
+                    Servidores e/ou clientes estão frequentemente localizados em intranets e escondem seu verdadeiro
+                    endereço IP aos outros. Requisições HTTP recorrem aos proxies para contornar essa barreira na rede.
+                    Mas nem todos os proxies são proxies HTTP. O protocolo SOCKS, por exemplo, opera em um nível mais
+                    baixo. Outros protocolos, como ftp, podem ser tratados por esses proxies.</li>
+                <li>Sessões
+                    Usando os cookies HTTP, permite que você crie vincule às requisições o estado do servidor. Isso cria
+                    as sessões, apesar do protocolo HTTP básico não manter estado. Isso é útil não só para os carrinhos
+                    de compras de e-commerces, mas também para qualquer site que permita customização das respostas a
+                    nível de usuário.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Fluxo HTTP</h2>
+            <ul>
+                <li>Quando o cliente quer comunicar com um servidor, este sendo um servidor final ou um proxy, ele
+                    realiza os
+                    seguintes passos:</li>
+                <li>Abre uma conexão TCP: A conexão TCP será usada para enviar uma requisição, ou várias, e receber uma
+                    resposta. O cliente pode abrir uma nova conexão, reusar uma conexão existente, ou abrir várias
+                    conexões
+                    aos servidores.</li>
+                <li>Envia uma mensagem HTTP: mensagens HTTP (antes do HTTP/2.0) são legíveis às pessoas. Com o HTTP/2.0,
+                    essas mensagens simples são encapsuladas dentro de quadros (frames), tornando-as impossíveis de ler
+                    diretamente, mas o princípio se mantém o mesmo.</li>
+                <li>
+                    Fecha ou reutiliza a conexão para requisições futuras.
+                </li>
+                <p>Se a linha de montagem (pipelining) estiver ativada, várias requisições podem ser enviadas sem que a
+                    primeira resposta seja totalmente recebida. A linha de montagem HTTP se provou difícil de ser
+                    implementada nas redes existentes, onde peças antigas de software coexistem com versões modernas. A
+                    linha de montagem HTTP tem sido substituída no HTTP/2.0 com multiplexação mais robusta de
+                    requisições dentro de um quadro (frame).</p>
+            </ul>
+        </section>
     </main>
 </body>
 
