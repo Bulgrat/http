@@ -24,7 +24,7 @@
                 <li><a href="#s4">Controlador</a></li>
                 <li><a href="#s5">Fluxo</a></li>
                 <li><a href="#s6">APIs</a></li>
-                <li><a href="s7">Conclusão</a></li>
+                <li><a href="#s7">Conclusão</a></li>
 
             </ul>
         </nav>
@@ -33,7 +33,8 @@
         <p id="inicio"></p>
         <section>
             <H1>O que é HTTP</H1>
-            <p>HTTP é um protocolo (protocol) que permite a obtenção de recursos, tais como documentos HTML. É a base de
+            <p>HTTP é um protocolo (protocol) que permite a obtenção de recursos, tais como documentos HTML. É a base
+                de
                 qualquer troca de dados na Web e um protocolo cliente-servidor, o que significa que as requisições são
                 iniciadas pelo destinatário, geralmente um navegador da Web. Um documento completo é reconstruído a
                 partir dos diferentes sub-documentos obtidos, como por exemplo texto, descrição do layout, imagens,
@@ -52,17 +53,19 @@
             </p>
         </section>
         <p id="s2"></p>
-       
-        <section >
+
+        <section>
             <h2>Componentes de sistemas baseados em HTTP</h2>
             <p>
                 O HTTP é um protocolo cliente-servidor: as requisições são enviados por uma entidade, o agente-usuário
-                (ou um proxy em nome dele). A maior parte do tempo, o agente-usuário é um navegador da Web, mas pode ser
+                (ou um proxy em nome dele). A maior parte do tempo, o agente-usuário é um navegador da Web, mas pode
+                ser
                 qualquer coisa, como por exemplo um robô que rastreia a Web para preencher e manter um índice de
                 mecanismo de pesquisa.
             </p>
             <p>Cada requisição individual é enviada para um servidor, que irá lidar com isso e fornecer um resultado,
-                chamado de resposta. Entre a solicitação e a resposta existem várias entidades, designadas coletivamente
+                chamado de resposta. Entre a solicitação e a resposta existem várias entidades, designadas
+                coletivamente
                 como proxies, que executam operações diferentes e atuam como gateways (intermediários) ou caches, por
                 exemplo.</p>
             <p>Na realidade, existem muitos outros computadores entre o navegador e o servidor que está tratando a
@@ -76,7 +79,8 @@
                 para depurar as suas aplicações.</p>
             <p>O navegador é sempre a entidade que inicia as requisições. Nunca é o servidor (embora alguns mecanismos
                 tenham sido adicionados ao longo dos anos para simular mensagens iniciadas pelo servidor).</p>
-            <p>Para mostrar uma página Web, o navegador envia uma requisição para buscar o documento HTML da página. Ele
+            <p>Para mostrar uma página Web, o navegador envia uma requisição para buscar o documento HTML da página.
+                Ele
                 então realiza uma análise sintática desse arquivo, buscando requisições adicionais correspondentes a
                 scripts de execução, informações de layout (CSS) para apresentação e subrecursos contidos na página
                 (geralmente imagens e vídeos). Depois o navegador interpreta esses recursos para mostrar ao usuário o
@@ -101,7 +105,8 @@
             <p>Um servidor não é necessáriamente apenas uma máquina, mas vários servidores podem estar hospedados na
                 mesma máquina. Com o HTTP/1.1 e o cabeçalho Host, eles podem até compartilhar o mesmo endereço IP.</p>
             <h3>Proxies (ou representantes)</h3>
-            <p>Entre o navegador Web e o servidor, vários computadores e máquinas transmitem as mensagens HTTP. Devido a
+            <p>Entre o navegador Web e o servidor, vários computadores e máquinas transmitem as mensagens HTTP. Devido
+                a
                 estrutura em camadas da pilha Web, a maioria dessas máquinas operam em alguma das camadas: de
                 transporte, de rede ou física, sendo transparente na camada da aplicação HTTP, e potencialmente
                 exercendo um grande impacto na performance. Essas máquinas que operam na camada de aplicação são
@@ -119,11 +124,12 @@
             </ul>
         </section>
         <p id="s3"></p>
-        <section >
+        <section>
             <h2>Aspectos básicos do HTTP</h2>
             <h3>HTTP é simples</h3>
             <p>Mesmo com mais complexidade introduzida no HTTP/2.0 por encapsular mensagens HTTP em quadros (frames), o
-                HTTP foi projetado para ser simples e legível às pessoas. As mensagens HTTP podem ser lidas e entendidas
+                HTTP foi projetado para ser simples e legível às pessoas. As mensagens HTTP podem ser lidas e
+                entendidas
                 por qualquer um, provendo uma maior facilidade para desenvolvimento e testes, e reduzir a complexidade
                 para os estudantes.</p>
             <h3>HTTP é extensível</h3>
@@ -139,7 +145,8 @@
                 requisição HTTP compartilhem o mesmo contexto, ou o mesmo estado.</p>
             <h3>HTTP e conexões</h3>
             <p>Uma conexão é controlada na camada de transporte, e portanto fundamentalmente fora do controle do HTTP.
-                Entretanto o HTTP não requer que o protocolo de transporte utilizado seja baseado em conexões, só requer
+                Entretanto o HTTP não requer que o protocolo de transporte utilizado seja baseado em conexões, só
+                requer
                 que seja confiável ou não perca mensagens (sem pelo menos apresentar erros). Dentre os dois protocolos
                 de transporte mais comuns na internet, o TCP é confiável e o UDP não. Portanto, o HTTP utiliza o padrão
                 TCP, que é baseado em conexão, mesmo que nem sempre seja obrigatório o uso de uma conexão.</p>
@@ -151,14 +158,15 @@
             <p>Para contornar essas falhas, o protocolo HTTP/1.1 introduziu o conceito de linhas de produção (ou
                 pipelining) — que se provou difícil de ser implementado — e conexões persistentes: as conexões TCPs
                 feitas embaixo, podem ser parcialmente controladas usando o cabeçalho HTTP Connection. O HTTP/2.0 foi
-                mais além, multiplexando várias mensagens através de uma única conexão, ajudando a manter a conexão mais
+                mais além, multiplexando várias mensagens através de uma única conexão, ajudando a manter a conexão
+                mais
                 quente, e mais eficiente.</p>
             <p>Experimentos estão sendo feitos para projetar um protocolo de transporte mais adequado para o HTTP. Por
                 exemplo, a Google está fazendo testes com o QUIC que é construído sobre o UDP para prover um protocolo
                 de transporte mais confiável e eficiente.</p>
         </section>
         <p id="s4"></p>
-        
+
         <section class="s4">
             <h2>O que pode ser controlado pelo HTTP?</h2>
             <p>A natureza extensível do HTTP tem permitido mais controle e funcionalidade para a internet, ao longo do
@@ -171,8 +179,10 @@
                     proxies, e clientes, ao que cachear e por quanto tempo. O cliente pode instruir proxies de cache
                     intermediários a ignorar o documento armazenado.</li>
                 <li>Relaxamento das restrições na origem
-                    Para prevenir bisbilhoteiros e outros invasores de privacidade, os navegadores reforçam estritamente
-                    a separação dos sites Web. Somente páginas de mesma origem podem acessar todas as informações de uma
+                    Para prevenir bisbilhoteiros e outros invasores de privacidade, os navegadores reforçam
+                    estritamente
+                    a separação dos sites Web. Somente páginas de mesma origem podem acessar todas as informações de
+                    uma
                     página Web. Apesar dessa restrição ser um fardo grande aos servidores, os cabeçalhos HTTP podem
                     relaxar essa separação estrita no lado dos servidores, permitindo que um documento ser composto por
                     várias fontes de informação em outros domínios (e pode até ter razões específicas de segurança para
@@ -187,15 +197,16 @@
                     Mas nem todos os proxies são proxies HTTP. O protocolo SOCKS, por exemplo, opera em um nível mais
                     baixo. Outros protocolos, como ftp, podem ser tratados por esses proxies.</li>
                 <li>Sessões
-                    Usando os cookies HTTP, permite que você crie vincule às requisições o estado do servidor. Isso cria
+                    Usando os cookies HTTP, permite que você crie vincule às requisições o estado do servidor. Isso
+                    cria
                     as sessões, apesar do protocolo HTTP básico não manter estado. Isso é útil não só para os carrinhos
                     de compras de e-commerces, mas também para qualquer site que permita customização das respostas a
                     nível de usuário.</li>
             </ol>
         </section>
         <p id="s5"></p>
-        
-        <section >
+
+        <section>
             <h2>Fluxo HTTP</h2>
             <ul>
                 <li>Quando o cliente quer comunicar com um servidor, este sendo um servidor final ou um proxy, ele
@@ -205,7 +216,8 @@
                     resposta. O cliente pode abrir uma nova conexão, reusar uma conexão existente, ou abrir várias
                     conexões
                     aos servidores.</li>
-                <li>Envia uma mensagem HTTP: mensagens HTTP (antes do HTTP/2.0) são legíveis às pessoas. Com o HTTP/2.0,
+                <li>Envia uma mensagem HTTP: mensagens HTTP (antes do HTTP/2.0) são legíveis às pessoas. Com o
+                    HTTP/2.0,
                     essas mensagens simples são encapsuladas dentro de quadros (frames), tornando-as impossíveis de ler
                     diretamente, mas o princípio se mantém o mesmo.</li>
                 <li>
@@ -220,31 +232,33 @@
                 requisições dentro de um quadro (frame).</p>
         </section>
         <p id="s6"></p>
-        
+        <a name="s7">
         <section>
-        <h2>APIs baseadas no HTTP</h2>
-        <p>A API mais utilizada construída em cima do HTTP é a XMLHttpRequest, que pode ser 
-            usada para trocar dados entre um user agent e um servidor.</p>
-        <p>Outra API, de eventos enviados pelo servidor, é um serviço de mão-única que permite um 
-            servidor enviar eventos ao cliente, usando HTTP como um mecanismo de transporte. 
-            Usando a interface EventSource, o cliente abre uma conexão e estabelece os manipuladores de evento. 
-            O navegador do cliente converte automaticamente as mensagens que chegam pelo fluxo HTTP em objetos Event 
-            apropriados, entregando-os aos manipuladores de evento que foram registrados para os tipos de eventos 
-            type se conhecidos, ou para o manipulador de evento onmessage se nenhum manipulador de evento 
-            específico ao tipo foi definido.</p>
+            <h2>APIs baseadas no HTTP</h2>
+            <p>A API mais utilizada construída em cima do HTTP é a XMLHttpRequest, que pode ser
+                usada para trocar dados entre um user agent e um servidor.</p>
+            <p>Outra API, de eventos enviados pelo servidor, é um serviço de mão-única que permite um
+                servidor enviar eventos ao cliente, usando HTTP como um mecanismo de transporte.
+                Usando a interface EventSource, o cliente abre uma conexão e estabelece os manipuladores de evento.
+                O navegador do cliente converte automaticamente as mensagens que chegam pelo fluxo HTTP em objetos
+                Event
+                apropriados, entregando-os aos manipuladores de evento que foram registrados para os tipos de eventos
+                type se conhecidos, ou para o manipulador de evento onmessage se nenhum manipulador de evento
+                específico ao tipo foi definido.</p>
+        </section>
+        <a name="s7">
+            <section>
+                <h2>Conclusão</h2>
+                <p>O HTTP é um protocolo extensível que é fácil de se usar. A arquitetura cliente-servidor,
+                    combinada com a habilidade de simplesmente adicionar cabeçalhos, permite que o HTTP
+                    avance suas funcionalidades juntamente com a elasticidade da Web.</p>
+                <p>Embora o HTTP/2.0 adicione mais complexidade, embutindo mensagens HTTP
+                    em quadros para melhorar a performance, a estrutura básica das mensagens continua a
+                    mesma desde o HTTP/1.0. Fluxo de sessões permanece simples, permitindo-o a ser investigado,
+                    e depurado com um simples monitor de mensagens HTTP.</p>
             </section>
-            <a name="s7">
-        <section >
-            <h2>Conclusão</h2>
-            <p>O HTTP é um protocolo extensível que é fácil de se usar. A arquitetura cliente-servidor, 
-                combinada com a habilidade de simplesmente adicionar cabeçalhos, permite que o HTTP 
-                avance suas funcionalidades juntamente com a elasticidade da Web.</p>
-            <p>Embora o HTTP/2.0 adicione mais complexidade, embutindo mensagens HTTP 
-                em quadros para melhorar a performance, a estrutura básica das mensagens continua a 
-                mesma desde o HTTP/1.0. Fluxo de sessões permanece simples, permitindo-o a ser investigado, 
-                e depurado com um simples monitor de mensagens HTTP.</p>
-        </section></a>
-            
+        </a>
+
     </main>
 </body>
 
