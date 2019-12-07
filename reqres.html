@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="teste.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-    <script type="text/javascript" src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <title>Reqres</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+    <title>ReqRes</title>
 </head>
 
 <body>
@@ -32,6 +32,7 @@
         <button id="">d</button>
         <button id="">e</button>
         <button id="">f</button>
+        <span id="mostra"></span>
     </main class="container">
 
     <script>
@@ -44,11 +45,8 @@
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     let json = JSON.parse(ajax.responseText);
                     var tabela = document.getElementById("table");
-
                     // tabela.innerHTML = null;
-
                     // var tr1 = document.createElement("tr");
-
                     // var td1 = document.createElement("td");
                     // td1.innerHTML = "Nome";
                     // var td2 = document.createElement("td");
@@ -56,11 +54,8 @@
                     // tabela.appendChild(tr1);
                     // tr1.appendChild(td1);
                     // tr1.appendChild(td2);
-
                     // for (let id in json) {
-
                     //     var tr2 = document.createElement("tr");
-
                     //     var td3 = document.createElement("td");
                     //     td3.innerHTML = json[id].name;
                     //     var td4 = document.createElement("td");
@@ -80,6 +75,18 @@
                 ajax.send();
             }
         }
+
+        document.getElementById("lista1").onclick = function (event) {
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("GET", "https://reqres.in/api/products/3", true);
+            ajax.onload = function () {
+                var mostrar = ajax.responseText;
+                document.getElementById("lista1").innerHTML = mostrar.data.id
+            }
+            ajax.send();
+        }
+
     </script>
 </body>
 
