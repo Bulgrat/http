@@ -21,49 +21,146 @@
     <main>
 
         <button id="lista">Listar</button>
-        <table id="table">
+        <div id="div1" style="display: none;">
 
-        </table>
+            <table id="table1">
+                <thead>
+                    <td>id |</td>
+                    <td>email |</td>
+                    <td>1° |</td>
+                    <td>Ult |</td>
+                    <td>Avatar |</td>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td><img id='img' src='' height='20px' width='20'> </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
         <button id="listar1">Listar 1</button>
-        <button id="">b</button>
+        <div id="div2" style="display: none;">
+            <table id="table2">
+                <thead>
+                    <td>id |</td>
+                    <td>email |</td>
+                    <td>1° |</td>
+                    <td>Ult |</td>
+                    <td>Avatar |</td>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td><img id='img' src='' height='20px' width='20'> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button id="not">Not found</button>
+        <div>
+            <table id="table">
+
+            </table>
+        </div>
         <button id="">c</button>
+        <div>
+            <table id="table">
+
+            </table>
+        </div>
         <button id="">d</button>
+        <div>
+            <table id="table">
+
+            </table>
+        </div>
         <button id="">e</button>
+        <div>
+            <table id="table">
+
+            </table>
+        </div>
         <button id="">f</button>
+        <div>
+            <table id="table">
+
+            </table>
+        </div>
         <span id="mostra"></span>
     </main class="container">
 
     <script>
+        //evento listar
         document.getElementById("lista").onclick = function (event) {
             event.preventDefault();
+            var div = document.getElementById("div1");
 
             var ajax = new XMLHttpRequest();
-
-            ajax.onreadystatechange = function () {
+            ajax.onload = function () {
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     let json = JSON.parse(ajax.responseText);
-                    
-                   
-                    $(json).ready(function () {
-                        $('#table').DataTable();
-                    });
+                    div = div.style.display = "block";
+                    var t1 = document.getElementById("table1");
 
+                    for (let id in json) {
+
+                        t1.children[1].children[0].children[0].innerHTML = mostrar[id].data.id;
+                        t1.children[1].children[0].children[1].innerHTML = mostrar[id].data.email;
+                        t1.children[1].children[0].children[2].innerHTML = mostrar[id].data.first_name;
+                        t1.children[1].children[0].children[3].innerHTML = mostrar[id].data.last_name;
+                        t1.children[1].children[0].children[4].children[0].src = mostrar[id].data.avatar;
+                    }
+
+                    ajax.open("GET", "https://reqres.in/api/users?page=2");
+                    ajax.send();
                 }
-
-                ajax.open("GET", "https://reqres.in/api/users?page=2");
-                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                ajax.send();
             }
         }
-
+        //evento listar 1
         document.getElementById("listar1").onclick = function (event) {
+            var div = document.getElementById("div1");
 
             var ajax = new XMLHttpRequest();
-            ajax.open("GET", "https://reqres.in/api/products/3", true);
+
             ajax.onload = function () {
-                var mostrar = ajax.responseText;
-                document.getElementById("mostra").innerHTML = mostrar.data.id
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    div = div.style.display = "block";
+                    var t1 = document.getElementById("table2");
+
+                    var mostrar = JSON.parse(ajax.responseText);
+                    document.getElementById("mostra").innerHTML = mostrar.data.id;
+                    t1.children[1].children[0].children[0].innerHTML = mostrar.data.id;
+                    t1.children[1].children[0].children[1].innerHTML = mostrar.data.email;
+                    t1.children[1].children[0].children[2].innerHTML = mostrar.data.first_name;
+                    t1.children[1].children[0].children[3].innerHTML = mostrar.data.last_name;
+                    t1.children[1].children[0].children[4].children[0].src = mostrar.data.avatar;
+                }
             }
+            ajax.open("GET", "https://reqres.in/api/products/3");
+            ajax.send();
+        }
+        //NOT FOUND
+        document.getElementById("not").onclick = function (event) {
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onload = function () {
+                if (ajax.status == 404) {
+                    var mostrar = JSON.parse(ajax.responseText);
+                    document.getElementById("mostra").innerHTML = mostrar.data.id;
+                }
+            }
+            ajax.open("GET", "https://reqres.in/api/products/3");
             ajax.send();
         }
 
