@@ -252,8 +252,8 @@
             document.getElementById("div3").style.display = "none";
             var div = document.getElementById("div4");
 
-            var tab2 = document.getElementById("tab4");
-            tab2.innerHTML = '';
+            var tab4 = document.getElementById("tab4");
+            tab4.innerHTML = '';
             var ajax = new XMLHttpRequest();
 
             ajax.onload = function () {
@@ -265,24 +265,24 @@
                     for (var i = 0; i <= 6; i++) {
 
                         var tr0 = document.createElement("tr");
-                        var tdv2d0 = document.createElement("td");
+                        var td0 = document.createElement("td");
                         var td1 = document.createElement("td");
                         var td2 = document.createElement("td");
                         var td3 = document.createElement("td");
                         var td4 = document.createElement("td");
 
-                        tdv2d0.innerHTML = json.data[i].id;
+                        td0.innerHTML = json.data[i].id;
                         td1.innerHTML = json.data[i].name;
                         td2.innerHTML = json.data[i].color;
                         td3.innerHTML = json.data[i].year;
                         td4.innerHTML = json.data[i].pantone_value;
 
-                        tr0.appendChild(tdv2d0);
+                        tr0.appendChild(td0);
                         tr0.appendChild(td1);
                         tr0.appendChild(td2);
                         tr0.appendChild(td3);
                         tr0.appendChild(td4);
-                        tab2.appendChild(tr0);
+                        tab4.appendChild(tr0);
                     }
                 }
             }

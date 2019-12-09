@@ -81,11 +81,13 @@ section>a{
     height: 100%;
     text-decoration: none;
 }
+
 #s5,
 #s2,
 .s4>li {
     font-size: 2ch;
 }
+
 a{
     text-decoration: none;
 }
