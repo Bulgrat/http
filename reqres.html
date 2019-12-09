@@ -7,6 +7,22 @@
     <link rel="stylesheet" type="text/css" href="teste.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <title>ReqRes</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            width: 20%;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            width: 72px;
+        }
+
+        th {
+            border: 1px solid #dddddd;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -19,78 +35,105 @@
         </nav>
     </header>
     <main>
+        <table>
 
-        <button id="lista">Listar</button>
+            <tr>
+                <td><button id="lista">Listar</button>
+                    <button id="listar1">Listar 1</button></td>
+            </tr>
+            <tr>
+                <td><button id="lnotf">Not found</button>
+                    <button id="resour">Resource</button></td>
+            </tr>
+            <tr>
+                <td><button id="resou">Resource 1</button>
+                    <button id="">E</button></td>
+            </tr>
+            <tr>
+                <td><button id="">F</button>
+                    <button id="">G</button></td>
+            </tr>
+
+        </table>
+
+
         <div id="div1" style="display: none;">
 
-            <table id="table1">
+            <table id="tab1">
                 <thead>
-                    <td>id |</td>
-                    <td>email |</td>
-                    <td>1° |</td>
-                    <td>Ult |</td>
-                    <td>Avatar |</td>
+                    <td>Id</td>
+                    <td>Email</td>
+                    <td>Nome</td>
+                    <td>Sobrenome</td>
+                    <td>Foto</td>
                 </thead>
 
-                <tbody>
-                    <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td><img id='img' src='' height='20px' width='20'> </td>
-                    </tr>
-                </tbody>
             </table>
 
         </div>
-        <button id="listar1">Listar 1</button>
+
         <div id="div2" style="display: none;">
-            <table id="table2">
+            <table id="tab2">
                 <thead>
-                    <td>id |</td>
-                    <td>email |</td>
-                    <td>1° |</td>
-                    <td>Ult |</td>
-                    <td>Avatar |</td>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Sobrenome</td>
+                    <td>Foto</td>
+                    <td>Email</td>
                 </thead>
 
-                <tbody>
-                    <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td><img id='img' src='' height='20px' width='20'> </td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td id="dv2d0"> </td>
+                    <td id="dv2d2"> </td>
+                    <td id="dv2d3"> </td>
+                    <td><img id='img2' src='' height='20' width='20'></td>
+                    <td id="dv2d1"> </td>
+                </tr>
             </table>
         </div>
-        <button id="not">Not found</button>
+
+        <div id="div3" style="display: none;">
+            <span id="retorno"></span>
+        </div>
+
+        <div id="div4" style="display: none;">
+            <table id="tab4">
+                <thead>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Cor</td>
+                    <td>Ano</td>
+                    <td>Email</td>
+                </thead>
+            </table>
+        </div>
+
+        <div id="div5" style="display: none;">
+            <table>
+                <thead>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Cor</td>
+                    <td>Ano</td>
+                    <td>Email</td>
+                </thead>
+
+                <tr>
+                    <td id="dv5dv2d0"> </td>
+                    <td id="dv5d1"> </td>
+                    <td id="dv5d2"> </td>
+                    <td id="dv5d3"> </td>
+                    <td id="dv5d4"> </td>
+                </tr>
+            </table>
+        </div>
+
         <div>
             <table id="table">
 
             </table>
         </div>
-        <button id="">c</button>
-        <div>
-            <table id="table">
 
-            </table>
-        </div>
-        <button id="">d</button>
-        <div>
-            <table id="table">
-
-            </table>
-        </div>
-        <button id="">e</button>
-        <div>
-            <table id="table">
-
-            </table>
-        </div>
-        <button id="">f</button>
         <div>
             <table id="table">
 
@@ -100,70 +143,179 @@
     </main class="container">
 
     <script>
-        //evento listar
-        document.getElementById("lista").onclick = function (event) {
-            event.preventDefault();
+        //Evento listar
+        document.getElementById("lista").onclick = function () {
+            document.getElementById("div2").style.display = "none";
+            document.getElementById("div3").style.display = "none";
+            document.getElementById("div4").style.display = "none";
+            document.getElementById("div5").style.display = "none";
             var div = document.getElementById("div1");
 
+            var tab1 = document.getElementById("tab1");
+            tab1.innerHTML = '';
             var ajax = new XMLHttpRequest();
             ajax.onload = function () {
-                if (ajax.readyState == 4 && ajax.status == 200) {
-                    let json = JSON.parse(ajax.responseText);
+                if (ajax.status == 200) {
                     div = div.style.display = "block";
-                    var t1 = document.getElementById("table1");
 
-                    for (let id in json) {
+                    let json = JSON.parse(ajax.responseText);
+                    console.log(json);
 
-                        t1.children[1].children[0].children[0].innerHTML = mostrar[id].data.id;
-                        t1.children[1].children[0].children[1].innerHTML = mostrar[id].data.email;
-                        t1.children[1].children[0].children[2].innerHTML = mostrar[id].data.first_name;
-                        t1.children[1].children[0].children[3].innerHTML = mostrar[id].data.last_name;
-                        // t1.children[1].children[0].children[4].children[0].src = mostrar[id].data.avatar;
+                    for (var i = 0; i <= 6; i++) {
+
+                        var tr0 = document.createElement("tr");
+
+                        var tdv2d0 = document.createElement("td");
+                        var td1 = document.createElement("td");
+                        var td2 = document.createElement("td");
+                        var td3 = document.createElement("td");
+                        var td4 = document.createElement("td");
+                        var img = document.createElement("img");
+
+                        img.height = "20";
+                        img.width = "20";
+                        img.src = json.data[i].avatar;
+
+                        tdv2d0.innerHTML = json.data[i].id;
+                        td1.innerHTML = json.data[i].email;
+                        td2.innerHTML = json.data[i].first_name;
+                        td3.innerHTML = json.data[i].last_name;
+
+                        td4.appendChild(img);
+                        tr0.appendChild(tdv2d0);
+                        tr0.appendChild(td1);
+                        tr0.appendChild(td2);
+                        tr0.appendChild(td3);
+                        tr0.appendChild(td4);
+                        tab1.appendChild(tr0);
+
                     }
-
-                    ajax.open("GET", "https://reqres.in/api/users?page=2");
-                    ajax.send();
                 }
             }
+            ajax.open("GET", "https://reqres.in/api/users?page=2");
+            ajax.send();
         }
-        //evento listar 1
-        document.getElementById("listar1").onclick = function (event) {
-            var div = document.getElementById("div1");
+        //Evento listar 1
+        document.getElementById("listar1").onclick = function () {
+            document.getElementById("div1").style.display = "none";
+            document.getElementById("div3").style.display = "none";
+            document.getElementById("div5").style.display = "none";
+            document.getElementById("div4").style.display = "none";
+            var div = document.getElementById("div2");
 
             var ajax = new XMLHttpRequest();
 
             ajax.onload = function () {
-                if (ajax.readyState == 4 && ajax.status == 200) {
+                if (ajax.status == 200) {
                     div = div.style.display = "block";
-                    var t1 = document.getElementById("table2");
 
                     var mostrar = JSON.parse(ajax.responseText);
-                    document.getElementById("mostra").innerHTML = mostrar.data.id;
-                    t1.children[1].children[0].children[0].innerHTML = mostrar.data.id;
-                    t1.children[1].children[0].children[1].innerHTML = mostrar.data.email;
-                    t1.children[1].children[0].children[2].innerHTML = mostrar.data.first_name;
-                    t1.children[1].children[0].children[3].innerHTML = mostrar.data.last_name;
-                    t1.children[1].children[0].children[4].children[0].src = mostrar.data.avatar;
+                    // document.getElementById("mostra").innerHTML = mostrar.data.name;
+
+                    document.getElementById("dv2d0").innerHTML = mostrar.data.id;
+                    document.getElementById("dv2d2").innerHTML = mostrar.data.first_name;
+                    document.getElementById("dv2d3").innerHTML = mostrar.data.last_name;
+                    document.getElementById("img2").src = mostrar.data.avatar;
+                    document.getElementById("dv2d1").innerHTML = mostrar.data.email;
                 }
             }
-            ajax.open("GET", "https://reqres.in/api/products/3");
+            ajax.open("GET", "https://reqres.in/api/users/2");
             ajax.send();
         }
         //NOT FOUND
-        document.getElementById("not").onclick = function (event) {
+        document.getElementById("lnotf").onclick = function () {
+            document.getElementById("div1").style.display = "none";
+            document.getElementById("div2").style.display = "none";
+            document.getElementById("div5").style.display = "none";
+            document.getElementById("div4").style.display = "none";
+            var div = document.getElementById("div3");
 
             var ajax = new XMLHttpRequest();
 
             ajax.onload = function () {
                 if (ajax.status == 404) {
-                    var mostrar = JSON.parse(ajax.responseText);
-                    document.getElementById("mostra").innerHTML = mostrar.data.id;
+                    div = div.style.display = "block";
+
+                    //JSON.parse(ajax.responseText);
+
+                    document.getElementById("retorno").innerHTML = "Falha no chamado";
                 }
             }
-            ajax.open("GET", "https://reqres.in/api/products/3");
+            ajax.open("GET", "https://reqres.in/api/users/23");
             ajax.send();
         }
+        //Resource
+        document.getElementById("resour").onclick = function () {
+            document.getElementById("div1").style.display = "none";
+            document.getElementById("div2").style.display = "none";
+            document.getElementById("div5").style.display = "none";
+            document.getElementById("div3").style.display = "none";
+            var div = document.getElementById("div4");
 
+            var tab2 = document.getElementById("tab4");
+            tab2.innerHTML = '';
+            var ajax = new XMLHttpRequest();
+
+            ajax.onload = function () {
+                if (ajax.status == 200) {
+                    div = div.style.display = "block";
+                    let json = JSON.parse(ajax.responseText);
+                    console.log(json);
+
+                    for (var i = 0; i <= 6; i++) {
+
+                        var tr0 = document.createElement("tr");
+                        var tdv2d0 = document.createElement("td");
+                        var td1 = document.createElement("td");
+                        var td2 = document.createElement("td");
+                        var td3 = document.createElement("td");
+                        var td4 = document.createElement("td");
+
+                        tdv2d0.innerHTML = json.data[i].id;
+                        td1.innerHTML = json.data[i].name;
+                        td2.innerHTML = json.data[i].color;
+                        td3.innerHTML = json.data[i].year;
+                        td4.innerHTML = json.data[i].pantone_value;
+
+                        tr0.appendChild(tdv2d0);
+                        tr0.appendChild(td1);
+                        tr0.appendChild(td2);
+                        tr0.appendChild(td3);
+                        tr0.appendChild(td4);
+                        tab2.appendChild(tr0);
+                    }
+                }
+            }
+            ajax.open("GET", "https://reqres.in/api/unknown");
+            ajax.send();
+        }
+        //RESOURCE 1
+        document.getElementById("resou").onclick = function () {
+            document.getElementById("div1").style.display = "none";
+            document.getElementById("div2").style.display = "none";
+            document.getElementById("div3").style.display = "none";
+            document.getElementById("div4").style.display = "none";
+            var div = document.getElementById("div5");
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onload = function () {
+                if (ajax.status == 200) {
+                    div = div.style.display = "block";
+                    
+                    var mostra = JSON.parse(ajax.responseText);
+                    console.log(mostra);
+                    document.getElementById("dv5dv2d0").innerHTML = mostra.data.id;
+                    document.getElementById("dv5d1").innerHTML = mostra.data.name;
+                    document.getElementById("dv5d2").innerHTML = mostra.data.color;
+                    document.getElementById("dv5d3").innerHTML = mostra.data.year;
+                    document.getElementById("dv5d4").innerHTML = mostra.data.pantone_value;
+                }
+            }
+            ajax.open("GET", "https://reqres.in/api/unknown/2");
+            ajax.send();
+        }
+    
     </script>
 </body>
 
