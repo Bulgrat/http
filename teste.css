@@ -92,3 +92,21 @@ a{
     text-decoration: none;
 }
   
+table {
+    font-family: arial, sans-serif;
+    width: 20%;
+}
+
+td {
+    border: 1px solid #dddddd;
+    /* width: 72px; */
+}
+
+th {
+    border: 1px solid #dddddd;
+
+}
+
+button{
+    font-size: 10px;
+}

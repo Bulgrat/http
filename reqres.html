@@ -8,19 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <title>ReqRes</title>
     <style>
-        table {
-            font-family: arial, sans-serif;
-            width: 20%;
-        }
-
-        td {
-            border: 1px solid #dddddd;
-            width: 72px;
-        }
-
-        th {
-            border: 1px solid #dddddd;
-
+        button {
+            font-size: 15px;
         }
     </style>
 </head>
@@ -39,23 +28,22 @@
 
             <tr>
                 <td><button id="lista">Listar</button>
-                    <button id="listar1">Listar 1</button></td>
+                    <button id="listar1">Listar 1</button>
+                    <button id="lnotf">Not found</button></td>
             </tr>
             <tr>
-                <td><button id="lnotf">Not found</button>
-                    <button id="resour">Resource</button></td>
+                <td>
+                    <button id="resour">Resource</button>
+                    <button id="resou">Resource 1</button>
+                    <button id="notReso">Not Resource</button></td>
             </tr>
             <tr>
-                <td><button id="resou">Resource 1</button>
-                    <button id="">E</button></td>
+                <td><button id="F">F</button>
+                    <button id="G">G</button>
+                    <button id="H">H</button>
+                    <button id="I">I</button></td>
             </tr>
-            <tr>
-                <td><button id="">F</button>
-                    <button id="">G</button></td>
-            </tr>
-
         </table>
-
 
         <div id="div1" style="display: none;">
 
@@ -67,6 +55,8 @@
                     <td>Sobrenome</td>
                     <td>Foto</td>
                 </thead>
+                <tbody id="tbody1">
+                </tbody>
 
             </table>
 
@@ -105,6 +95,8 @@
                     <td>Ano</td>
                     <td>Email</td>
                 </thead>
+                <tbody id="tbody4">
+                </tbody>
             </table>
         </div>
 
@@ -119,7 +111,7 @@
                 </thead>
 
                 <tr>
-                    <td id="dv5dv2d0"> </td>
+                    <td id="dv5d0"> </td>
                     <td id="dv5d1"> </td>
                     <td id="dv5d2"> </td>
                     <td id="dv5d3"> </td>
@@ -128,19 +120,30 @@
             </table>
         </div>
 
-        <div>
+        <div id="div6" style="display: none;">
+            <span id="notR"></span>
+        </div>
+
+        <div id="div7" style="display: none;">
             <table id="table">
 
             </table>
         </div>
 
-        <div>
-            <table id="table">
+        <div id="div8" style="display: none;">
 
-            </table>
         </div>
+
+        <div id="div9" style="display: none;">
+
+        </div>
+
+        <div id="div10" style="display: none;">
+
+        </div>
+
         <span id="mostra"></span>
-    </main class="container">
+    </main>
 
     <script>
         //Evento listar
@@ -149,9 +152,10 @@
             document.getElementById("div3").style.display = "none";
             document.getElementById("div4").style.display = "none";
             document.getElementById("div5").style.display = "none";
+            document.getElementById("div6").style.display = "none";
             var div = document.getElementById("div1");
 
-            var tab1 = document.getElementById("tab1");
+            var tab1 = document.getElementById("tbody1");
             tab1.innerHTML = '';
             var ajax = new XMLHttpRequest();
             ajax.onload = function () {
@@ -201,6 +205,7 @@
             document.getElementById("div3").style.display = "none";
             document.getElementById("div5").style.display = "none";
             document.getElementById("div4").style.display = "none";
+            document.getElementById("div6").style.display = "none";
             var div = document.getElementById("div2");
 
             var ajax = new XMLHttpRequest();
@@ -228,6 +233,7 @@
             document.getElementById("div2").style.display = "none";
             document.getElementById("div5").style.display = "none";
             document.getElementById("div4").style.display = "none";
+            document.getElementById("div6").style.display = "none";
             var div = document.getElementById("div3");
 
             var ajax = new XMLHttpRequest();
@@ -250,9 +256,10 @@
             document.getElementById("div2").style.display = "none";
             document.getElementById("div5").style.display = "none";
             document.getElementById("div3").style.display = "none";
+            document.getElementById("div6").style.display = "none";
             var div = document.getElementById("div4");
 
-            var tab4 = document.getElementById("tab4");
+            var tab4 = document.getElementById("tbody4");
             tab4.innerHTML = '';
             var ajax = new XMLHttpRequest();
 
@@ -295,6 +302,7 @@
             document.getElementById("div2").style.display = "none";
             document.getElementById("div3").style.display = "none";
             document.getElementById("div4").style.display = "none";
+            document.getElementById("div6").style.display = "none";
             var div = document.getElementById("div5");
 
             var ajax = new XMLHttpRequest();
@@ -302,10 +310,10 @@
             ajax.onload = function () {
                 if (ajax.status == 200) {
                     div = div.style.display = "block";
-                    
+
                     var mostra = JSON.parse(ajax.responseText);
                     console.log(mostra);
-                    document.getElementById("dv5dv2d0").innerHTML = mostra.data.id;
+                    document.getElementById("dv5d0").innerHTML = mostra.data.id;
                     document.getElementById("dv5d1").innerHTML = mostra.data.name;
                     document.getElementById("dv5d2").innerHTML = mostra.data.color;
                     document.getElementById("dv5d3").innerHTML = mostra.data.year;
@@ -313,6 +321,29 @@
                 }
             }
             ajax.open("GET", "https://reqres.in/api/unknown/2");
+            ajax.send();
+        }
+        //Not resource
+        document.getElementById("notReso").onclick = function () {
+            document.getElementById("div1").style.display = "none";
+            document.getElementById("div2").style.display = "none";
+            document.getElementById("div3").style.display = "none";
+            document.getElementById("div4").style.display = "none";
+            document.getElementById("div5").style.display = "none";
+            var div = document.getElementById("div6");
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onload = function () {
+                if (ajax.status == 404) {
+                    div = div.style.display = "block";
+
+                    //JSON.parse(ajax.responseText);
+
+                    document.getElementById("notR").innerHTML = "Erro";
+                }
+            }
+            ajax.open("GET", "https://reqres.in/api/unknown/23");
             ajax.send();
         }
     
