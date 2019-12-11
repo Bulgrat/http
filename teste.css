@@ -75,6 +75,7 @@ main{
     background-color: lightgrey;
     margin-top: 70px;
 }
+
 section>a{
     display: inline-block;
     width: 100%;
@@ -99,7 +100,7 @@ table {
 
 td {
     border: 1px solid #dddddd;
-    /* width: 72px; */
+    width: 30;
 }
 
 th {
@@ -108,5 +109,5 @@ th {
 }
 
 button{
-    font-size: 15px;
+    font-size: 20;
 }

@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="teste.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+
     <title>ReqRes</title>
 </head>
 
@@ -19,38 +24,29 @@
         </nav>
     </header>
     <main>
-        <table>
-
-            <tr>
-                <td><button id="lista">Listar</button>
-                    <button id="listar1">Listar 1</button>
-                    <button id="lnotf">Not found</button></td>
-            </tr>
-            <tr>
-                <td>
-                    <button id="resour">Resource</button>
-                    <button id="resou">Resource 1</button>
-                    <button id="notReso">Not Resource</button></td>
-            </tr>
-            <tr>
-                <td><button id="F">F</button>
-                    <button id="G">G</button>
-                    <button id="H">H</button>
-                    <button id="I">I</button></td>
-            </tr>
-        </table>
+        <td><button id="lista">Listar</button></td>
+        <td><button id="listar1">Listar 1</button></td>
+        <td><button id="lnotf">Not found</button></td>
+        <td><button id="resour">Resource</button></td>
+        <td><button id="resou">Resource 1</button></td>
+        <td><button id="notReso">Not Resource</button></td>
+        <td><button id="cre">Create</button></td>
+        <td><button id="up1">Patch</button></td>
+        <td><button id="up2">Put</button></td>
+        <td><button id="dele">Delete</button></td>
+        <td><button id="clear">Clear</button></td>
 
         <div id="div1" style="display: none;">
 
-            <table id="tab1">
+            <table id="tb1">
                 <thead>
-                    <td>Id</td>
-                    <td>Email</td>
-                    <td>Nome</td>
-                    <td>Sobrenome</td>
-                    <td>Foto</td>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                    <th>Avatar</th>
                 </thead>
-                <tbody id="tbody1">
+                <tbody>
                 </tbody>
 
             </table>
@@ -58,7 +54,7 @@
         </div>
 
         <div id="div2" style="display: none;">
-            <table id="tab2">
+            <table>
                 <thead>
                     <td>Id</td>
                     <td>Name</td>
@@ -78,19 +74,19 @@
         </div>
 
         <div id="div3" style="display: none;">
-            <span id="retorno"></span>
+            <span id="retorn"></span>
         </div>
 
         <div id="div4" style="display: none;">
-            <table id="tab4">
+            <table id="tb4">
                 <thead>
                     <td>Id</td>
                     <td>Name</td>
                     <td>Cor</td>
                     <td>Ano</td>
-                    <td>Email</td>
+                    <td>Palheta</td>
                 </thead>
-                <tbody id="tbody4">
+                <tbody>
                 </tbody>
             </table>
         </div>
@@ -102,7 +98,7 @@
                     <td>Name</td>
                     <td>Cor</td>
                     <td>Ano</td>
-                    <td>Email</td>
+                    <td>Palheta</td>
                 </thead>
 
                 <tr>
@@ -120,228 +116,374 @@
         </div>
 
         <div id="div7" style="display: none;">
-            <table id="table">
-
+            <form method="POST">
+                <table>
+                    <th>Crie um "registro"</th>
+                    <tr>
+                        <td><span>Nome</span>
+                            <input id="name7" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Sobrenome</span>
+                            <input id="last7" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Trabalho</span>
+                            <input id="job7" type="text">
+                        </td>
+                        <td>
+                            <button id="submit">Enviar</button>
+                        </td>
+                </table>
+            </form>
+        </div>
+        <div id="div7-2" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Nome</td>
+                        <td>Trabalho</td>
+                        <td>Data de criação</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="7dtd1"></td>
+                        <td id="7dtd2"></td>
+                        <td id="7dtd3"></td>
+                        <td id="7dtd4"></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
 
         <div id="div8" style="display: none;">
+            <form method="POST">
+                <table>
+                    <th>Alterar registro(PATCH)</th>
+                    <tr>
+                        <td><span>Nome</span>
+                            <input id="name8" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Trabalho</span>
+                            <input id="job8" type="text">
+                        </td>
+                        <td>
+                            <button id="submit2">Enviar</button>
+                        </td>
+                </table>
+            </form>
+        </div>
+        <div id="div8-2" style="display: none;">
 
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Trabalho</td>
+                        <td>Data de alteração</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="8dtd1"></td>
+                        <td id="8dtd2"></td>
+                        <td id="8dtd3"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div id="div9" style="display: none;">
-
+            <form method="POST">
+                <th>Alterar registro(PUT)</th>
+                <table>
+                    <tr>
+                        <td><span>Nome</span>
+                            <input id="name9" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Trabalho</span>
+                            <input id="job8" type="text">
+                        </td>
+                        <td>
+                            <button id="submit3">Enviar</button>
+                        </td>
+                </table>
+            </form>
+        </div>
+        <div id="div9-2" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Trabalho</td>
+                        <td>Data de alteração</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="9dtd1"></td>
+                        <td id="9dtd2"></td>
+                        <td id="9dtd3"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div id="div10" style="display: none;">
+            <table id="ttt">
+                <th>Deletar registro(DELETE)</th>
+                <tr>
+                    <td>
+                        <span>Nome</span>
+                        <input id="job8" type="text">
+                        <button id="submit4">Enviar</button>
+                    </td>
+                    <tbody>
+                    </tbody>
+            </table>
 
         </div>
+        <div id="div10-2" style="display: none;">
+            <span id="del"></span>
+        </div>
 
-        <span id="mostra"></span>
     </main>
 
     <script>
-        //Evento listar
-        document.getElementById("lista").onclick = function () {
-            document.getElementById("div2").style.display = "none";
-            document.getElementById("div3").style.display = "none";
-            document.getElementById("div4").style.display = "none";
-            document.getElementById("div5").style.display = "none";
-            document.getElementById("div6").style.display = "none";
-            var div = document.getElementById("div1");
+        //Evento listar /1
+        $("#lista").click(function () {
+            $("#div1").toggle();
 
-            var tab1 = document.getElementById("tbody1");
-            tab1.innerHTML = '';
-            var ajax = new XMLHttpRequest();
-            ajax.onload = function () {
-                if (ajax.status == 200) {
-                    div = div.style.display = "block";
+            $('#tb1').DataTable({
+                ajax: 'https://reqres.in/api/users?page=1',
+                columns: [
+                    { "data": "id" },
+                    { "data": "email" },
+                    { "data": "first_name" },
+                    { "data": "last_name" },
+                    { "data": "avatar" },
+                ]
+            });
+        });
+        //Evento listar 1 /2
+        $("#listar1").click(function () {
+            $("#div2").toggle();
 
-                    let json = JSON.parse(ajax.responseText);
-                    console.log(json);
+            $.ajax({
+                url: "https://reqres.in/api/users/2",
+                type: "GET",
 
-                    for (var i = 0; i <= 6; i++) {
+                success: function (response) {
+                    $("#dv2d0").text(response.data.id);
+                    $("#dv2d2").text(response.data.first_name);
+                    $("#dv2d3").text(response.data.last_name);
+                    $("#img2").attr('src', response.data.avatar);
+                    $("#dv2d1").text(response.data.email);
+                }
+            });
+        });
+        //Evento NOT FOUND /3
+        $("#lnotf").click(function () {
+            $("#div3").toggle();
 
-                        var tr0 = document.createElement("tr");
+            $.ajax({
+                url: "https://reqres.in/api/users/23",
+                type: "GET",
 
-                        var tdv2d0 = document.createElement("td");
-                        var td1 = document.createElement("td");
-                        var td2 = document.createElement("td");
-                        var td3 = document.createElement("td");
-                        var td4 = document.createElement("td");
-                        var img = document.createElement("img");
-
-                        img.height = "20";
-                        img.width = "20";
-                        img.src = json.data[i].avatar;
-
-                        tdv2d0.innerHTML = json.data[i].id;
-                        td1.innerHTML = json.data[i].email;
-                        td2.innerHTML = json.data[i].first_name;
-                        td3.innerHTML = json.data[i].last_name;
-
-                        td4.appendChild(img);
-                        tr0.appendChild(tdv2d0);
-                        tr0.appendChild(td1);
-                        tr0.appendChild(td2);
-                        tr0.appendChild(td3);
-                        tr0.appendChild(td4);
-                        tab1.appendChild(tr0);
-
+                statusCode: {
+                    404: function () {
+                        $("#retorn").text("Falha no chamado");
                     }
                 }
-            }
-            ajax.open("GET", "https://reqres.in/api/users?page=2");
-            ajax.send();
-        }
-        //Evento listar 1
-        document.getElementById("listar1").onclick = function () {
-            document.getElementById("div1").style.display = "none";
-            document.getElementById("div3").style.display = "none";
-            document.getElementById("div5").style.display = "none";
-            document.getElementById("div4").style.display = "none";
-            document.getElementById("div6").style.display = "none";
-            var div = document.getElementById("div2");
+            });
+        });
+        //Evento Resource /4
+        $("#resour").click(function () {
+            $("#div4").toggle();
 
-            var ajax = new XMLHttpRequest();
+            $('#tb4').DataTable({
+                ajax: 'https://reqres.in/api/unknown',
+                columns: [
+                    { "data": "id" },
+                    { "data": "name" },
+                    { "data": "color" },
+                    { "data": "year" },
+                    { "data": "pantone_value" },
+                ]
+            });
+        });
+        //Evento RESOURCE 1 /5
+        $("#resou").click(function () {
+            $("#div5").toggle();
 
-            ajax.onload = function () {
-                if (ajax.status == 200) {
-                    div = div.style.display = "block";
+            $.ajax({
+                url: "https://reqres.in/api/unknown/2",
+                type: "GET",
 
-                    var mostrar = JSON.parse(ajax.responseText);
-                    // document.getElementById("mostra").innerHTML = mostrar.data.name;
-
-                    document.getElementById("dv2d0").innerHTML = mostrar.data.id;
-                    document.getElementById("dv2d2").innerHTML = mostrar.data.first_name;
-                    document.getElementById("dv2d3").innerHTML = mostrar.data.last_name;
-                    document.getElementById("img2").src = mostrar.data.avatar;
-                    document.getElementById("dv2d1").innerHTML = mostrar.data.email;
+                success: function (response) {
+                    $("#dv5d0").text(response.data.id);
+                    $("#dv5d1").text(response.data.name);
+                    $("#dv5d2").text(response.data.color);
+                    $("#dv5d3").text(response.data.year);
+                    $("#dv5d4").text(response.data.pantone_value);
                 }
-            }
-            ajax.open("GET", "https://reqres.in/api/users/2");
-            ajax.send();
-        }
-        //NOT FOUND
-        document.getElementById("lnotf").onclick = function () {
-            document.getElementById("div1").style.display = "none";
-            document.getElementById("div2").style.display = "none";
-            document.getElementById("div5").style.display = "none";
-            document.getElementById("div4").style.display = "none";
-            document.getElementById("div6").style.display = "none";
-            var div = document.getElementById("div3");
+            });
+        });
+        //Evento Not resource /6
+        $("#notReso").click(function () {
+            $("#div6").toggle();
 
-            var ajax = new XMLHttpRequest();
+            $.ajax({
+                url: "https://reqres.in/api/unknown/23",
+                type: "GET",
 
-            ajax.onload = function () {
-                if (ajax.status == 404) {
-                    div = div.style.display = "block";
-
-                    //JSON.parse(ajax.responseText);
-
-                    document.getElementById("retorno").innerHTML = "Falha no chamado";
-                }
-            }
-            ajax.open("GET", "https://reqres.in/api/users/23");
-            ajax.send();
-        }
-        //Resource
-        document.getElementById("resour").onclick = function () {
-            document.getElementById("div1").style.display = "none";
-            document.getElementById("div2").style.display = "none";
-            document.getElementById("div5").style.display = "none";
-            document.getElementById("div3").style.display = "none";
-            document.getElementById("div6").style.display = "none";
-            var div = document.getElementById("div4");
-
-            var tab4 = document.getElementById("tbody4");
-            tab4.innerHTML = '';
-            var ajax = new XMLHttpRequest();
-
-            ajax.onload = function () {
-                if (ajax.status == 200) {
-                    div = div.style.display = "block";
-                    let json = JSON.parse(ajax.responseText);
-                    console.log(json);
-
-                    for (var i = 0; i <= 6; i++) {
-
-                        var tr0 = document.createElement("tr");
-                        var td0 = document.createElement("td");
-                        var td1 = document.createElement("td");
-                        var td2 = document.createElement("td");
-                        var td3 = document.createElement("td");
-                        var td4 = document.createElement("td");
-
-                        td0.innerHTML = json.data[i].id;
-                        td1.innerHTML = json.data[i].name;
-                        td2.innerHTML = json.data[i].color;
-                        td3.innerHTML = json.data[i].year;
-                        td4.innerHTML = json.data[i].pantone_value;
-
-                        tr0.appendChild(td0);
-                        tr0.appendChild(td1);
-                        tr0.appendChild(td2);
-                        tr0.appendChild(td3);
-                        tr0.appendChild(td4);
-                        tab4.appendChild(tr0);
+                statusCode: {
+                    404: function () {
+                        $("#notR").text("Erro");
                     }
                 }
-            }
-            ajax.open("GET", "https://reqres.in/api/unknown");
-            ajax.send();
-        }
-        //RESOURCE 1
-        document.getElementById("resou").onclick = function () {
-            document.getElementById("div1").style.display = "none";
-            document.getElementById("div2").style.display = "none";
-            document.getElementById("div3").style.display = "none";
-            document.getElementById("div4").style.display = "none";
-            document.getElementById("div6").style.display = "none";
-            var div = document.getElementById("div5");
+            });
+        });
+        //Evento CREATE /7
+        $("#cre").click(function () {
+            $("#div7").toggle();
+        });
+        $("#submit").click(function (event) {
+            event.preventDefault();
+            var name = $("#name7").val();
+            var last = $("#last7").val();
+            var job = $("#job7").val();
 
-            var ajax = new XMLHttpRequest();
-
-            ajax.onload = function () {
-                if (ajax.status == 200) {
-                    div = div.style.display = "block";
-
-                    var mostra = JSON.parse(ajax.responseText);
-                    console.log(mostra);
-                    document.getElementById("dv5d0").innerHTML = mostra.data.id;
-                    document.getElementById("dv5d1").innerHTML = mostra.data.name;
-                    document.getElementById("dv5d2").innerHTML = mostra.data.color;
-                    document.getElementById("dv5d3").innerHTML = mostra.data.year;
-                    document.getElementById("dv5d4").innerHTML = mostra.data.pantone_value;
+            $.ajax({
+                url: "https://reqres.in/api/users",
+                type: "POST",
+                data: {
+                    name: name + " " + last,
+                    job: job
+                },
+                success: function (response) {
+                    $("#7dtd1").text(response.id);
+                    $("#7dtd2").text(response.name);
+                    $("#7dtd3").text(response.job);
+                    $("#7dtd4").text(response.createdAt);
+                    $("#div7").hide();
+                    $("#div7-2").show();
+                    $("#div7-2").delay(10000).hide(1000);
                 }
-            }
-            ajax.open("GET", "https://reqres.in/api/unknown/2");
-            ajax.send();
-        }
-        //Not resource
-        document.getElementById("notReso").onclick = function () {
-            document.getElementById("div1").style.display = "none";
-            document.getElementById("div2").style.display = "none";
-            document.getElementById("div3").style.display = "none";
-            document.getElementById("div4").style.display = "none";
-            document.getElementById("div5").style.display = "none";
-            var div = document.getElementById("div6");
+            });
+            return false;
+        });
+        //Evento UPDATE patch /8
+        $("#up1").click(function () {
+            $("#div8").toggle();
+        });
+        $("#submit2").click(function (event) {
+            event.preventDefault();
 
-            var ajax = new XMLHttpRequest();
+            var name = $("#name8").val();
+            var job = $("#job8").val();
 
-            ajax.onload = function () {
-                if (ajax.status == 404) {
-                    div = div.style.display = "block";
-
-                    //JSON.parse(ajax.responseText);
-
-                    document.getElementById("notR").innerHTML = "Erro";
+            $.ajax({
+                url: "https://reqres.in/api/users/2",
+                type: "PATCH",
+                data: {
+                    name: name,
+                    job: job
+                },
+                success: function (response) {
+                    $("#8dtd1").text(response.name);
+                    $("#8dtd2").text(response.job);
+                    $("#8dtd3").text(response.updatedAt);
+                    $("#div8").hide();
+                    $("#div8-2").show();
+                    $("#div8-2").delay(10000).hide(1000);
                 }
-            }
-            ajax.open("GET", "https://reqres.in/api/unknown/23");
-            ajax.send();
-        }
+            });
+            return false;
+        });
+        //Evento UPDATE put /9
+        $("#up2").click(function () {
+            $("#div9").toggle();
+        });
+        $("#submit3").click(function (event) {
+            event.preventDefault();
 
+            var name = $("#name8").val();
+            var job = $("#job8").val();
+
+            $.ajax({
+                url: "https://reqres.in/api/users/2",
+                type: "PUT",
+                data: {
+                    name: name,
+                    job: job
+                },
+                success: function (response) {
+                    $("#9dtd1").text(response.name);
+                    $("#9dtd2").text(response.job);
+                    $("#9dtd3").text(response.updatedAt);
+                    $("#div9").hide();
+                    $("#div9-2").show();
+                    $("#div9-2").delay(10000).hide(1000);
+
+                }
+            });
+            return false;
+        });
+        //Evento DELETE /10
+        $("#dele").click(function () {
+            $("#div10").toggle();
+        });
+        $("#submit4").click(function () {
+            $("#div10-2").show();
+            $("#div10").hide();
+            $.ajax({
+                url: "https://reqres.in/api/users/2",
+                type: "DELETE",
+
+                statusCode: {
+                    204: function () {
+                        $("#del").text("Excluido com sucesso");
+                    }
+                }
+            });
+
+            $("#div7-2").hide();
+            $("#div8-2").hide();
+            $("#div9-2").hide();
+            $("#div10-2").delay(4000).hide(1000);
+
+        })
+
+        //Evento clear /11
+        $("#clear").click(function () {
+            $("#div1").hide();
+            $("#div2").hide();
+            $("#div3").hide();
+            $("#div4").hide();
+            $("#div5").hide();
+            $("#div6").hide();
+            $("#div7").hide();
+            $("#div8").hide();
+            $("#div9").hide();
+            $("#div10").hide();
+            $("#div7-2").hide();
+            $("#div8-2").hide();
+            $("#div9-2").hide();
+            $("#div10-2").hide();
+        });
     </script>
 </body>
 
