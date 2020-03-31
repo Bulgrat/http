@@ -141,6 +141,7 @@
                 </table>
             </form>
         </div>
+
         <div id="div7-2" style="display: none;">
             <table>
                 <thead>
@@ -182,8 +183,8 @@
                 </table>
             </form>
         </div>
-        <div id="div8-2" style="display: none;">
 
+        <div id="div8-2" style="display: none;">
             <table>
                 <thead>
                     <tr>
@@ -222,6 +223,7 @@
                 </table>
             </form>
         </div>
+
         <div id="div9-2" style="display: none;">
             <table>
                 <thead>
@@ -253,8 +255,8 @@
                     <tbody>
                     </tbody>
             </table>
-
         </div>
+        
         <div id="div10-2" style="display: none;">
             <span id="del"></span>
         </div>
@@ -277,6 +279,7 @@
                 ]
             });
         });
+
         //Evento listar 1 /2
         $("#listar1").click(function () {
             $("#div2").toggle();
@@ -294,6 +297,7 @@
                 }
             });
         });
+
         //Evento NOT FOUND /3
         $("#lnotf").click(function () {
             $("#div3").toggle();
@@ -309,6 +313,7 @@
                 }
             });
         });
+
         //Evento Resource /4
         $("#resour").click(function () {
             $("#div4").toggle();
@@ -324,6 +329,7 @@
                 ]
             });
         });
+
         //Evento RESOURCE 1 /5
         $("#resou").click(function () {
             $("#div5").toggle();
@@ -341,6 +347,7 @@
                 }
             });
         });
+
         //Evento Not resource /6
         $("#notReso").click(function () {
             $("#div6").toggle();
@@ -356,6 +363,7 @@
                 }
             });
         });
+
         //Evento CREATE /7
         $("#cre").click(function () {
             $("#div7").toggle();
@@ -385,6 +393,7 @@
             });
             return false;
         });
+
         //Evento UPDATE patch /8
         $("#up1").click(function () {
             $("#div8").toggle();
@@ -413,6 +422,7 @@
             });
             return false;
         });
+
         //Evento UPDATE put /9
         $("#up2").click(function () {
             $("#div9").toggle();
@@ -442,6 +452,7 @@
             });
             return false;
         });
+
         //Evento DELETE /10
         $("#dele").click(function () {
             $("#div10").toggle();
@@ -449,6 +460,7 @@
         $("#submit4").click(function () {
             $("#div10-2").show();
             $("#div10").hide();
+            
             $.ajax({
                 url: "https://reqres.in/api/users/2",
                 type: "DELETE",
@@ -464,7 +476,6 @@
             $("#div8-2").hide();
             $("#div9-2").hide();
             $("#div10-2").delay(4000).hide(1000);
-
         })
 
         //Evento clear /11
@@ -486,5 +497,4 @@
         });
     </script>
 </body>
-
 </html>
